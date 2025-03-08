@@ -1,0 +1,119 @@
+CREATE DATABASE suvan;
+USE suvan;
+
+-- Creating Students table
+CREATE TABLE Students (
+    StudentID INT,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    DOB DATE,  -- Modified this to DATE as per ALTER statement
+    Email VARCHAR(100),
+    DepartmentID INT
+);
+
+-- Altering the table to modify DOB datatype
+ALTER TABLE Students
+MODIFY DOB DATE;
+
+-- Adding Primary Key to Students table
+ALTER TABLE Students
+ADD PRIMARY KEY (StudentID);
+
+-- Creating Departments table
+CREATE TABLE Departments (
+    DepartmentID INT PRIMARY KEY,
+    DepartmentName VARCHAR(100),
+    Location VARCHAR(100)
+);
+
+-- Creating Courses table
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100),
+    DepartmentID INT,
+    Credits INT
+);
+
+-- Creating Professors table
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    Email VARCHAR(100),
+    DepartmentID INT
+);
+
+-- Inserting data into Students table
+INSERT INTO Students (StudentID, FirstName, LastName, DOB, Email, DepartmentID) 
+VALUES
+(301, 'Harshdeep', 'Kour', '2005-12-26', 'harsdeep.kour@miet.com', 1),
+(302, 'Khushi', 'Bhat', '2005-05-13', 'khushi.bhat@miet.com', 2),
+(303, 'Akash', 'Chib', '2003-03-11', 'akash.chib@miet.com', 3);
+
+-- Inserting data into Departments table
+INSERT INTO Departments (DepartmentID, DepartmentName, Location) 
+VALUES
+(1, 'Computer Science', 'Building A'),
+(2, 'Mathematics', 'Building B'),
+(3, 'Physics', 'Building C');
+
+-- Inserting data into Courses table
+INSERT INTO Courses (CourseID, CourseName, DepartmentID, Credits) 
+VALUES
+(101, 'Introduction to Programming', 1, 3),
+(102, 'Algebra', 2, 4),
+(103, 'Quantum Mechanics', 3, 4);
+
+-- Inserting data into Professors table
+INSERT INTO Professors (ProfessorID, FirstName, LastName, Email, DepartmentID) 
+VALUES
+(202, 'Gaganpreet', 'Singh', 'gaganpreet.singh@miet.com', 1),
+(201, 'Suvan', 'Mahajan', 'suvan.mahajan@miet.com', 2),
+(203, 'Dheeraj', 'Sharma', 'dheeraj.sharma@miet.com', 3);
+
+-- Query to select students from DepartmentID = 1
+SELECT FirstName, LastName, Email 
+FROM Students
+WHERE DepartmentID = 1;
+
+-- Updating a student's first name based on their last name
+UPDATE Students
+SET FirstName = 'Jasleen'
+WHERE LastName = 'Kour';
+
+-- Updating a department name
+UPDATE Departments
+SET DepartmentName = 'Maths'
+WHERE DepartmentName = 'Mathematics';
+
+-- Query to check department name after the update
+SELECT DepartmentName 
+FROM Departments
+WHERE DepartmentID = 2;
+
+-- Deleting the Physics department
+DELETE FROM Departments
+WHERE DepartmentName = 'Physics';
+
+-- Query to check remaining departments
+SELECT DepartmentName 
+FROM Departments;
+
+-- Query to select courses with credits greater than 3 and course name = 'Algebra'
+SELECT * 
+FROM Courses
+WHERE Credits > 3 AND CourseName = 'Algebra';
+
+-- Query to select courses with credits greater than 3 OR course name = 'Algebra'
+SELECT * 
+FROM Courses
+WHERE Credits > 3 OR CourseName = 'Algebra';
+
+-- Updating the location of departments where the location is not 'Building A'
+UPDATE Departments
+SET Location = 'Building D'
+WHERE NOT Location = 'Building A';
+
+-- Checking department locations after update
+SELECT DepartmentName, Location 
+FROM Departments;

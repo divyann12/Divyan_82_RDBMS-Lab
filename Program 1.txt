@@ -1,0 +1,61 @@
+CREATE database univ6;
+USE univ6;
+CREATE TABLE Students (
+StudentID INT,
+FirstName VARCHAR(100),
+LastName VARCHAR(100),
+DOB INT,
+Email VARCHAR(100),
+DepartmentID INT
+);
+USE univ6;
+CREATE TABLE Departments
+(
+DepartmentID INT PRIMARY KEY,
+DepartmentName VARCHAR(100),
+Location VARCHAR(100)
+);
+USE univ6;
+CREATE TABLE Courses
+(
+CourseID INT PRIMARY KEY,
+CourseName VARCHAR(100),
+DepartmentID INT,
+Credits int
+);
+USE univ6;
+CREATE TABLE Professors
+(
+ProfessorID INT PRIMARY KEY,
+FirstName VARCHAR(100),
+LastName VARCHAR(100),
+Email VARCHAR(100),
+DepartmentID int
+);
+USE univ6;
+INSERT INTO Students (StudentID, FirstName, LastName, DOB, Email, DepartmentID) VALUES
+(301, 'David', 'Brown', 1999-04-05, 'david.brown@university.com',1),
+(302, 'Emily', 'White', 2000-08-12, 'emily.white@university.com',2),
+(303, 'Frank', 'Wilson', 1998-11-23, 'frank.wilson@university.com',3);
+INSERT INTO Departments (DepartmentID, DepartmentName, Location) VALUES
+(1,'Computer Science','Building A'),
+(2,'Mathematics','Building B'),
+(3,'Physics','Building C');
+INSERT INTO Courses (CourseID, CourseName, DepartmentID, Credits) VALUES
+(101 ,'Introduction to Programming',1,3),
+(102 ,'Algebra',2,4),
+(103 ,'Quantum Mechanics',3,4);
+INSERT INTO Professors (ProfessorID, FirstName, LastName, Email, DepartmentID) VALUES
+(201, 'Alice', 'Johnson', 'alice.johnson@university.com',1),
+(202, 'Bob', 'Smith', 'bob.smith@university.com',2),
+(203, 'Carol', 'Taylor', 'carol.taylor@university.com',3);
+USE univ6;
+Select FirstName,LastName,Email from Students;
+Update Students
+Set FirstName = 'William'
+Where LastName = 'Brown';
+Update Departments
+Set DepartmentName = 'Maths'
+Where Location = 'Building B';
+Delete From Departments
+Where DepartmentName = 'Physics';

@@ -1,0 +1,9 @@
+-- Query to retrieve maximum, minimum, average, count, and sum of employee salaries
+SELECT 
+    MAX(salary) AS MaxSalary,        -- Maximum salary
+    MIN(salary) AS MinSalary,        -- Minimum salary
+    AVG(salary) AS AverageSalary,    -- Average salary
+    COUNT(salary) AS EmployeeCount,  -- Count of employees with salary (non-null)
+    SUM(salary) AS TotalSalary       -- Total sum of all salaries
+FROM 
+    employees;                       -- Replace with your actual table name

@@ -1,0 +1,93 @@
+CREATE database suvan;
+USE suvan;
+CREATE TABLE Students (
+StudentID INT,
+FirstName VARCHAR(100),
+LastName VARCHAR(100),
+DOB INT,
+Email VARCHAR(100),
+DepartmentID INT
+);
+
+ALTER TABLE Students
+MODIFY DOB DATE;
+
+ALTER TABLE Students
+ADD PRIMARY KEY (StudentID);
+
+USE suvan;
+CREATE TABLE Departments
+(
+DepartmentID INT PRIMARY KEY,
+DepartmentName VARCHAR(100),
+Location VARCHAR(100)
+);
+
+USE suvan;
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100),
+    DepartmentID INT,
+    Credits INT
+);
+
+USE suvan;
+CREATE TABLE Professors (
+    ProfessorID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    Email VARCHAR(100),
+    DepartmentID INT
+    );
+   
+    USE suvan;
+    INSERT INTO Students (StudentID, FirstName, LastName, DOB, Email, DepartmentID) VALUES
+    (301, 'Harshdeep', 'Kour', '2005-12-26', 'harsdeep.kour@miet.com', 1),
+    (302, 'Khushi', 'Bhat', '2005-05-13', 'khushi.bhat@miet.com', 2),
+    (303, 'Akash', 'Chib', '2003-03-11', 'akash.chib@miet.com', 3);
+   
+    USE suvan;
+    INSERT INTO Departments (DepartmentID, DepartmentName, Location) VALUES
+    (1, 'Computer Science', 'Building A'),
+    (2, 'Mathematics', 'Building B'),
+    (3, 'Physics', 'Building C');
+   
+    USE suvan;
+    INSERT INTO Courses (CourseID, CourseName, DepartmentID, Credits) VALUES
+    (101, 'Introduction to Programming', 1, 3),
+    (102, 'Algebra', 2, 4),
+    (103, 'Quantum Mechanics', 3, 4);
+   
+    USE suvan;
+    INSERT INTO Professors (ProfessorID, FirstName, LastName, Email, DepartmentID) VALUES
+    (202, 'Gaganpreet', 'Singh', 'gaganpreet.singh@miet.com', 1),
+    (201, 'Suvan', 'Mahajan', 'suvan.mahajan@miet.com', 2),
+    (203, 'Dheeraj', 'Sharma', 'dheeraj.sharma@miet.com', 3);
+
+    USE suvan;
+    SELECT FirstName, LastName, Email FROM Students
+    WHERE DepartmentID =1;
+   
+    USE suvan;
+    UPDATE Students
+    SET FirstName= 'Jasleen'
+    WHERE LastName= 'Kour';
+   
+    USE suvan;
+    UPDATE Departments
+    SET DepartmentName= 'Maths'
+    WHERE DepartmentName= 'Mathematics';
+    SELECT DepartmentName FROM Departments
+    WHERE DepartmentID =2;
+    DELETE FROM Departments
+    WHERE DepartmentName= 'Physics';
+    SELECT DepartmentName FROM Departments;
+    SELECT * FROM Courses
+    WHERE Credits > 3 AND CourseName= 'Algebra';
+    SELECT * FROM Courses
+    WHERE Credits > 3 OR CourseName= 'Algebra';
+    UPDATE Departments
+    SET Location = 'Building D'
+    WHERE NOT Location = 'Building a';
+   
+    
